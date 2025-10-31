@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rayyan Sami — Portfolio</title>
+  <meta name="description" content="Personal portfolio — projects, about, and contact." />
+  <style>
+    :root{
+      --bg:#0f1724; /* dark navy */
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#06b6d4; /* teal */
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --max-w:1100px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, rgba(10,14,24,1) 0%, rgba(6,10,16,1) 100%);
+      color:#e6eef8;
+      line-height:1.45;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:40px 20px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
+    .container{
+      width:100%;
+      max-width:var(--max-w);
+    }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;\      margin-bottom:28px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7c3aed);
+      display:flex;align-items:center;justify-content:center;font-weight:700;color:#042027;font-size:18px
+    }
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{
+      color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px;font-weight:600;font-size:14px
+    }
+    nav a:hover{background:var(--glass);color:#fff}
+    .btn-primary{
+      background:linear-gradient(90deg,var(--accent),#7c3aed);border:none;padding:10px 14px;border-radius:12px;color:#021017;font-weight:700;cursor:pointer
+    }
+
+    main{display:grid;grid-template-columns:1fr;gap:24px}
+    .hero{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:28px;display:flex;gap:24px;align-items:center;box-shadow:0 6px 20px rgba(2,6,23,0.6);
+    }
+    .hero .intro{flex:1}
+    .hero h1{margin:0;font-size:28px}
+    .hero p{color:var(--muted);margin:10px 0 16px}
+    .hero .cta{display:flex;gap:10px}
+    .profile-pic{width:120px;height:120px;border-radius:16px;flex-shrink:0;background:linear-gradient(135deg,#0ea5a4,#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:800;color:#021017;font-size:36px}
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+    .about{grid-column:span 7;background:var(--card);padding:20px;border-radius:12px}
+    .projects{grid-column:span 5;background:var(--card);padding:20px;border-radius:12px}
+    .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{background:rgba(255,255,255,0.03);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--muted)}
+
+    .card-list{display:grid;gap:12px}
+    .project-card{display:flex;gap:12px;align-items:center;padding:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));border-radius:10px;cursor:pointer}
+    .project-thumb{width:68px;height:68px;border-radius:8px;background:linear-gradient(135deg,#1e293b,#0ea5a4);display:flex;align-items:center;justify-content:center;font-weight:700}
+    .project-meta{flex:1}
+    .project-meta h4{margin:0;font-size:15px}
+    .project-meta p{margin:6px 0 0;color:var(--muted);font-size:13px}
+
+    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* Contact form */
+    .contact{background:var(--card);padding:18px;border-radius:12px}
+    .field{display:flex;flex-direction:column;margin-bottom:10px}
+    label{font-size:13px;margin-bottom:6px;color:var(--muted)}
+    input[type=text],input[type=email],textarea{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);padding:10px;border-radius:8px;color:inherit}
+    textarea{min-height:100px;resize:vertical}
+    .small{font-size:12px;color:var(--muted)}
+
+    /* responsive */
+    @media (max-width:920px){
+      .grid{grid-template-columns:1fr;}
+      .about,.projects{grid-column:span 12}
+      .hero{flex-direction:column;align-items:flex-start}
+      .profile-pic{width:96px;height:96px}
+    }
+
+    /* simple modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.75);display:flex;align-items:center;justify-content:center;z-index:60;}
+    .modal{background:linear-gradient(180deg, #081026,#041223);padding:18px;border-radius:12px;max-width:720px;width:92%}
+    .modal h3{margin-top:0}
+    .close-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 10px;border-radius:10px;color:var(--muted);cursor:pointer}
+
+  </style>
+</head>
+<body>
+  <div class="container" id="top">
+    <header>
+      <div class="brand">
+        <div class="logo">RS</div>
+        <div>
+          <div style="font-weight:700">Rayyan Sami</div>
+          <div style="font-size:12px;color:var(--muted)">Frontend Developer & Designer</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <button class="btn-primary" onclick="scrollToSection('contact')">Hire me</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="intro">
+        <div class="intro">
+          <h1 id="intro">Hi — I'm Rayyan. I build clean web experiences.</h1>
+          <p>I design and code accessible, responsive websites and small web apps. I focus on performance, clarity, and delightful interactions.</p>
+          <div class="cta">
+            <button class="btn-primary" onclick="scrollToSection('projects')">See projects</button>
+            <a href="#contact" style="text-decoration:none"><button class="close-btn">Contact</button></a>
+          </div>
+        </div>
+        <div>
+          <div class="profile-pic">RS</div>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section id="about" class="about">
+          <div class="section-title">
+            <h2 style="margin:0">About</h2>
+            <div class="chips">
+              <div class="chip">HTML</div>
+              <div class="chip">CSS</div>
+              <div class="chip">JavaScript</div>
+              <div class="chip">React</div>
+            </div>
+          </div>
+          <p style="color:var(--muted);margin-top:6px">I'm a frontend developer who enjoys turning ideas into pixel-perfect, performant sites. I love accessible components, clean animations, and pragmatic design systems. I also mentor junior devs and enjoy solving UI problems.</p>
+
+          <h3 style="margin-top:14px;margin-bottom:8px">Skills</h3>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <div class="chip">Responsive Design</div>
+            <div class="chip">JS (ES6+)</div>
+            <div class="chip">Accessibility</div>
+            <div class="chip">Performance</div>
+            <div class="chip">Git & Workflow</div>
+          </div>
+
+          <h3 style="margin-top:16px;margin-bottom:8px">Experience</h3>
+          <ul style="color:var(--muted);padding-left:18px;margin-top:6px">
+            <li><strong>Frontend Developer</strong> — Acme Corp (2023–present)</li>
+            <li><strong>UI Intern</strong> — StudioX (2022)</li>
+          </ul>
+        </section>
+
+        <aside id="projects" class="projects">
+          <div class="section-title">
+            <h2 style="margin:0">Projects</h2>
+            <div class="small">Filter: <span style="color:var(--muted)">All</span></div>
+          </div>
+
+          <div class="card-list">
+            <div class="project-card" tabindex="0" role="button" onclick="openProject(1)">
+              <div class="project-thumb">P1</div>
+              <div class="project-meta">
+                <h4>Portfolio Website</h4>
+                <p>Single-file portfolio with responsive layout and interactive components.</p>
+              </div>
+            </div>
+
+            <div class="project-card" tabindex="0" role="button" onclick="openProject(2)">
+              <div class="project-thumb">P2</div>
+              <div class="project-meta">
+                <h4>Todo Web App</h4>
+                <p>Small React-free todo app using localStorage and vanilla JS.</p>
+              </div>
+            </div>
+
+            <div class="project-card" tabindex="0" role="button" onclick="openProject(3)">
+              <div class="project-thumb">P3</div>
+              <div class="project-meta">
+                <h4>Design System</h4>
+                <p>Design tokens, accessible components and CSS utility helpers.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div style="margin-top:14px">
+            <button class="close-btn" onclick="scrollToSection('top')">Back to top</button>
+          </div>
+
+        </aside>
+      </div>
+
+      <section id="contact" class="contact" aria-label="contact form">
+        <div class="section-title">
+          <h2 style="margin:0">Get in touch</h2>
+          <div class="small">Available for freelance & full-time</div>
+        </div>
+
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@domain.com" required />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" placeholder="Tell me about your project" required></textarea>
+          </div>
+
+          <div style="display:flex;gap:10px;align-items:center">
+            <button type="submit" class="btn-primary">Send message</button>
+            <div id="formFeedback" class="small" style="color:var(--muted)"></div>
+          </div>
+        </form>
+      </section>
+
+      <footer>
+        <div>© <span id="year"></span> Rayyan Sami — Built with ❤️ using HTML, CSS & JavaScript</div>
+      </footer>
+    </main>
+
+  </div>
+
+  <!-- modal template -->
+  <template id="modalTpl">
+    <div class="modal-backdrop">
+      <div class="modal" role="dialog" aria-modal="true">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <h3 id="modalTitle"></h3>
+          <button class="close-btn" onclick="closeModal()">Close</button>
+        </div>
+        <p id="modalBody" style="color:var(--muted)"></p>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    // small helper functions
+    function $(s){return document.querySelector(s)}
+    function $all(s){return document.querySelectorAll(s)}
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(!el) return window.scrollTo({top:0,behavior:'smooth'});
+      el.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    // keyboard accessibility: Enter on project-card opens modal
+    $all('.project-card').forEach(card=>{
+      card.addEventListener('keypress', (e)=>{ if(e.key === 'Enter') card.click() })
+    })
+
+    const projects = {
+      1: {title:'Portfolio Website', body:'A single-file, responsive portfolio built with semantic HTML, modern CSS and vanilla JS. Focus on accessibility, performance, and clear presentation.'},
+      2: {title:'Todo Web App', body:'A minimal todo application that stores tasks in localStorage. Demonstrates small stateful UI and progressive enhancement.'},
+      3: {title:'Design System', body:'Collection of tokens, accessible components and utilities used to scale consistent interfaces.'}
+    }
+
+    function openProject(id){
+      const tpl = document.getElementById('modalTpl');
+      const clone = tpl.content.cloneNode(true);
+      clone.querySelector('#modalTitle').textContent = projects[id].title;
+      clone.querySelector('#modalBody').textContent = projects[id].body;
+      document.body.appendChild(clone);
+      // trap focus quickly
+      document.addEventListener('keydown', escClose);
+    }
+    function closeModal(){
+      const backdrop = document.querySelector('.modal-backdrop');
+      if(backdrop) backdrop.remove();
+      document.removeEventListener('keydown', escClose);
+    }
+    function escClose(e){ if(e.key === 'Escape') closeModal() }
+
+    // basic form handler (client-only)
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = $('#name').value.trim();
+      const email = $('#email').value.trim();
+      const message = $('#message').value.trim();
+      const feedback = $('#formFeedback');
+      if(!name || !email || !message){ feedback.textContent = 'Please fill all fields.'; return }
+      // simple email pattern
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!emailPattern.test(email)){ feedback.textContent = 'Please enter a valid email.'; return }
+
+      // emulate sending... (client-only)
+      feedback.style.color = 'var(--muted)';
+      feedback.textContent = 'Sending...';
+      setTimeout(()=>{
+        feedback.style.color = 'lightgreen';
+        feedback.textContent = 'Message sent — I will get back to you soon!';
+        e.target.reset();
+      },700);
+    }
+
+    // small progressive enhancement: enable smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (ev)=>{
+        const href = a.getAttribute('href');
+        if(href === '#') return;
+        const id = href.replace('#','');
+        const el = document.getElementById(id);
+        if(el){ ev.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+      })
+    })
+
+  </script>
+</body>
+</html>
